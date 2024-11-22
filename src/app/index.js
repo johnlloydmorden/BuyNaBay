@@ -1,77 +1,153 @@
-import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TextInput, Text, Button } from 'react-native-paper';
-import MyButton from '../components/MyButton';
-import { Link, useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text, StyleSheet, Image } from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
 
-const Login = () => {
+const LogInPage = () => {
+  const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const router = useRouter();
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState(''); 
-    const [isShowPassword, setIsShowPassword] = React.useState(false);
+  const handleSignIn = () => {
+    if (username && password) {
+      router.push({
+        pathname: 'dashboard',
+        params: { username }, // Pass username as a query param
+      });
+    } else {
+      alert('Please enter your username and password');
+    }
+  };
 
   return (
-    <SafeAreaView style={loginStyle.container}>
-        <View style={{...loginStyle.section, alignItems: 'center', justifyContent: 'center'}}>
-            <Image source={require('../assets/logo.png')} style={loginStyle.logo} />
-            <Text variant='displayMedium' style={{ marginVertical: 5}}>BossJob</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.logoContainer}>
+        <View style={styles.circleContainer}>
+          <Image source={require('../assets/AppLogo.png')} style={styles.logo} resizeMode="cover" />
         </View>
-        <View style={{...loginStyle.section}}>
-           <TextInput
-                value={email}
-                onChangeText={text => setEmail(text)}
-                label={'Email'}
-                placeholder='Email'
-                style={loginStyle.textInput}
-           />
-           <TextInput
-                value={password}
-                onChangeText={text => setPassword(text)}
-                label={'Password'}
-                placeholder='Password'
-                style={loginStyle.textInput}
-                secureTextEntry={!isShowPassword}
-                right={<TextInput.Icon onPress={() => setIsShowPassword(!isShowPassword)} icon={isShowPassword ? "eye": "eye-off"} />}
-           />
-        </View>         
-        <View style={{...loginStyle.section}}>
-            <View style={{ margin: 5 }}>
-                <MyButton text='Login' action={() => router.replace('dashboard')} mode='contained' size='small' />
-            </View>
-            <View style={{ margin: 5 }}>
-                <MyButton text='Register' action={() => router.push('register')} mode='contained' size='small' />
-            </View>
-            <View style={{ flexDirection: 'row', marginTop: 40, justifyContent: 'center', alignItems:'center', width: '100%'}}>
-                <Button onPress={() => router.push('recover')} mode='text' style={{ width: '100%'}}>
-                    Forgot Password?
-                </Button>
-            </View>            
-        </View>
+        <Text style={styles.appName}>JB Dynamics</Text>
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Icon name="user" size={20} color="#3e7139" style={styles.icon} />
+        <TextInput
+          label="Username"
+          mode="outlined"
+          style={styles.input}
+          placeholderTextColor="#6b8f71"
+          value={username}
+          onChangeText={setUsername}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Icon name="key" size={20} color="#3e7139" style={styles.icon} />
+        <TextInput
+          label="Password"
+          mode="outlined"
+          secureTextEntry
+          style={styles.input}
+          placeholderTextColor="#6b8f71"
+          value={password}
+          onChangeText={setPassword}
+        />
+      </View>
+
+      <Text
+        style={styles.forgotPasswordText}
+        onPress={() => router.push('recover')}
+      >
+        Forgot Password?
+      </Text>
+
+      <Button mode="contained" onPress={handleSignIn} style={styles.signInButton}>
+        SIGN IN
+      </Button>
+
+      <Text style={styles.signUpText}>
+        DON’T HAVE AN ACCOUNT?{' '}
+        <Text style={styles.signUpLink} onPress={() => router.push('register')}>
+          Sign up
+        </Text>
+      </Text>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Login
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f0f0f0',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 50,
+  },
+  circleContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    overflow: 'hidden',
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  appName: {
+    marginTop: 12,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#3e7139',
+  },
+  inputContainer: {
+    position: 'relative',
+    width: '100%',
+    marginBottom: 20,
+  },
+  icon: {
+    position: 'absolute',
+    left: 22,
+    top: 20,
+    zIndex: 1,
+  },
+  input: {
+    backgroundColor: '#ffffff',
+    color: '#3e7139',
+    paddingLeft: 40,
+  },
+  forgotPasswordText: {
+    alignSelf: 'flex-end',
+    color: '#3e7139',
+    marginBottom: 20,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  signInButton: {
+    width: '100%',
+    paddingVertical: 10,
+    backgroundColor: '#6b8f71',
+  },
+  signUpText: {
+    marginTop: 20,
+    fontSize: 14,
+    color: '#3e7139',
+  },
+  signUpLink: {
+    fontWeight: 'bold',
+  },
+});
 
-
-const loginStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center', 
-    },
-    section: {
-        flex:1,
-        width: '100%',
-        padding: 20, 
-    },
-    logo:{
-        width: 200,
-        height: 200,
-    },
-    textInput:{
-        margin: 10,
-    }
-})
+export default LogInPage;

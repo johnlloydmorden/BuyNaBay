@@ -1,153 +1,84 @@
-import React, { useState } from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Image } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, Text, StyleSheet, Image, Animated } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import AppLoading from 'expo-app-loading';
 
-const LogInPage = () => {
+const IntroScreen = () => {
+  const [loading, setLoading] = useState(true);
+  const [fadeAnim] = useState(new Animated.Value(1)); // Start with full opacity
   const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
-    if (username && password) {
-      router.push({
-        pathname: 'dashboard',
-        params: { username }, // Pass username as a query param
-      });
-    } else {
-      alert('Please enter your username and password');
-    }
-  };
+  // Load the Poppins font
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+  });
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <View style={styles.circleContainer}>
-          <Image source={require('../assets/AppLogo.png')} style={styles.logo} resizeMode="cover" />
-        </View>
-        <Text style={styles.appName}>JB Dynamics</Text>
-      </View>
+  useEffect(() => {
+    // Set a timer to trigger the fade-out animation and then transition to the Login page after 2 seconds
+    const timer = setTimeout(() => {
+      // Start fading out
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 3000, // Fade out duration (1 second)
+        useNativeDriver: true,
+      }).start();
 
-      <View style={styles.inputContainer}>
-        <Icon name="user" size={20} color="#3e7139" style={styles.icon} />
-        <TextInput
-          label="Username"
-          mode="outlined"
-          style={styles.input}
-          placeholderTextColor="#6b8f71"
-          value={username}
-          onChangeText={setUsername}
+      // After the fade-out is complete, navigate to the intro page
+      setTimeout(() => {
+        setLoading(false);
+        router.push('intro'); // Navigate to the intro page
+      }, 1000); // Same duration as fade-out
+    }, 3000); // Initial wait time before starting fade-out
+
+    // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
+  }, [fadeAnim, router]);
+
+  if (!fontsLoaded) {
+    return <AppLoading />; // Wait for the fonts to load
+  }
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Animated.Image
+          source={require('../assets/BuyNaBay.png')} // Path to your logo image
+          style={[styles.logo, { opacity: fadeAnim }]} // Apply fade animation to logo
         />
-      </View>
+        <Animated.Text
+          style={[styles.title, { opacity: fadeAnim, fontFamily: 'Poppins_700Bold' }]}>
+          BuyNaBay
+        </Animated.Text>
+      </SafeAreaView>
+    );
+  }
 
-      <View style={styles.inputContainer}>
-        <Icon name="key" size={20} color="#3e7139" style={styles.icon} />
-        <TextInput
-          label="Password"
-          mode="outlined"
-          secureTextEntry
-          style={styles.input}
-          placeholderTextColor="#6b8f71"
-          value={password}
-          onChangeText={setPassword}
-        />
-      </View>
-
-      <Text
-        style={styles.forgotPasswordText}
-        onPress={() => router.push('recover')}
-      >
-        Forgot Password?
-      </Text>
-
-      <Button mode="contained" onPress={handleSignIn} style={styles.signInButton}>
-        SIGN IN
-      </Button>
-
-      <Text style={styles.signUpText}>
-        DON’T HAVE AN ACCOUNT?{' '}
-        <Text style={styles.signUpLink} onPress={() => router.push('register')}>
-          Sign up
-        </Text>
-      </Text>
-    </SafeAreaView>
-  );
+  return null; // While loading, nothing is rendered
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#f0f0f0',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  circleContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 5,
-    overflow: 'hidden',
+    backgroundColor: '#1b1b41', // Updated background color
   },
   logo: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+    width: 150,
+    height: 150,
+    marginBottom: 30,
+    backgroundColor: '#1b1b41', // Logo background color to match the screen
+    overflow: 'hidden', // Keeps the logo clean, no border-radius
   },
-  appName: {
-    marginTop: 12,
-    fontSize: 24,
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#3e7139',
-  },
-  inputContainer: {
-    position: 'relative',
-    width: '100%',
-    marginBottom: 20,
-  },
-  icon: {
-    position: 'absolute',
-    left: 22,
-    top: 20,
-    zIndex: 1,
-  },
-  input: {
-    backgroundColor: '#ffffff',
-    color: '#3e7139',
-    paddingLeft: 40,
-  },
-  forgotPasswordText: {
-    alignSelf: 'flex-end',
-    color: '#3e7139',
-    marginBottom: 20,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  signInButton: {
-    width: '100%',
-    paddingVertical: 10,
-    backgroundColor: '#6b8f71',
-  },
-  signUpText: {
-    marginTop: 20,
-    fontSize: 14,
-    color: '#3e7139',
-  },
-  signUpLink: {
-    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 10,
+    fontFamily: 'Poppins_700Bold', // Apply the bold Poppins font to the title
   },
 });
 
-export default LogInPage;
+export default IntroScreen;

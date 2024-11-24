@@ -58,6 +58,7 @@ const Recover = () => {
             placeholderTextColor="#FFF"
             underlineColor="#FDAD00"
             activeOutlineColor="#FDAD00"
+            textColor='#FFF'
             left={<TextInput.Icon name="email" color="#FDAD00" size={20} />} // Adjusted icon size and color
           />
         </View>

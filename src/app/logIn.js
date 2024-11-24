@@ -45,7 +45,6 @@ const LogInPage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={handleBackArrowPress} style={styles.backArrow}>
           <Icon name="chevron-left" size={20} color="#FDAD00" />

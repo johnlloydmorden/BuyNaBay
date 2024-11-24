@@ -33,16 +33,25 @@ export default function DrawerLayout() {
                 paddingBottom: 20
               }}
             >
-              {/* Avatar container */}
+              {/* New BuyNaBay Logo */}
               <View style={styles.avatarContainer}>
-                <Image source={require('../../assets/AppLogo.png')} style={styles.avatar} />
+                <Image source={require('../../assets/BuyNaBay.png')} style={styles.avatar} />
               </View>
             </View>
             <DrawerItemList {...props} />
+            {/* Profile Drawer Item */}
+            <DrawerItem
+              label="Profile"
+              icon={() => (
+                <Icon name='user' color='#FF6F00' size={25} /> // Adjusted icon color for "BuyNaBay" theme
+              )}
+              labelStyle={{ fontSize: 18 }} // Inlined font size for label
+              onPress={() => router.push('/profile')} // Navigate to Profile page
+            />
             <DrawerItem
               label="Logout"
               icon={() => (
-                <Icon name='sign-out' color='#6b8f71' size={25} /> // Inlined icon size and color for logout
+                <Icon name='sign-out' color='#FF6F00' size={25} /> // Inlined icon size and color for logout
               )}
               labelStyle={{ fontSize: 18 }} // Inlined font size for label
               onPress={handleLogout}
@@ -55,8 +64,8 @@ export default function DrawerLayout() {
               paddingBottom: 20 + bottom
             }}
           >
-            <Text>
-            © {year} JB Dynamics. All rights reserved.
+            <Text style={styles.footerText}>
+              © {year} BuyNaBay. All rights reserved.
             </Text>
           </View> 
         </View>
@@ -65,9 +74,9 @@ export default function DrawerLayout() {
           name="(tabs)" // This is the name of the page and must match the URL from the root
           options={{
             drawerLabel: 'Home',
-            title: 'JB Dynamics',
+            title: 'BuyNaBay',
             drawerIcon: () => (
-              <Icon name='home' size={25} color='#6b8f71' /> // Inlined icon size and color for Home
+              <Icon name='home' size={25} color='#FF6F00' /> // Adjusted icon color for "BuyNaBay" theme
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
           }}
@@ -78,7 +87,19 @@ export default function DrawerLayout() {
             drawerLabel: 'Settings',
             title: 'Settings',
             drawerIcon: () => (
-              <Icon name='cogs' size={25} color='#3e7139' /> // Inlined icon size and color for Settings
+              <Icon name='cogs' size={25} color='#FF6F00' /> // Adjusted icon color for Settings
+            ),
+            drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
+          }}
+        />
+        {/* Profile Screen (additionally, you'd create the '/profile' screen) */}
+        <Drawer.Screen
+          name="profile" // The profile page should match the URL in the root
+          options={{
+            drawerLabel: 'Profile',
+            title: 'Profile',
+            drawerIcon: () => (
+              <Icon name='user' size={25} color='#FF6F00' /> // Adjusted icon color for Profile
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
           }}
@@ -88,7 +109,7 @@ export default function DrawerLayout() {
   );
 }
 
-// Avatar styling similar to the one in the LogInPage
+// Avatar and theme styling for BuyNaBay
 const styles = StyleSheet.create({
   avatarContainer: {
     width: 150,
@@ -97,7 +118,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FF6F00', // BuyNaBay theme color
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -108,6 +129,11 @@ const styles = StyleSheet.create({
   avatar: {
     width: '100%',
     height: '100%',
-    resizeMode: 'cover',
+    resizeMode: 'contain', // Ensure logo is properly resized
+  },
+  footerText: {
+    color: '#FF6F00', // Adjusted footer text color for BuyNaBay theme
+    fontSize: 14,
+    fontWeight: '300',
   },
 });

@@ -33,7 +33,7 @@ const Register = () => {
       <View style={styles.header}>
         {/* Back Button */}
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Icon name="arrow-back" size={24} color="#FFF" />
+          <Icon name="chevron-left" size={30} color="#FDAD00" />
         </TouchableOpacity>
 
         {/* Logo and Title */}
@@ -50,11 +50,18 @@ const Register = () => {
       <View style={styles.inputContainer}>
         <TextInput
           label="Username"
+          mode="flat"
           style={styles.input}
           placeholder="Enter Username"
           placeholderTextColor="#FFF"
           labelStyle={styles.labelText}
           textColor='#FFF'
+          theme={{
+            colors: {
+              placeholder: '#FFF', // Set placeholder color to white
+              primary: '#FDAD00',
+            },
+          }}
         />
       </View>
 
@@ -67,6 +74,12 @@ const Register = () => {
           placeholderTextColor="#FFF"
           labelStyle={styles.labelText}
           textColor='#FFF'
+          theme={{
+            colors: {
+              placeholder: '#FFF', // Set placeholder color to white
+              primary: '#FDAD00',
+            },
+          }}
         />
       </View>
 
@@ -78,6 +91,12 @@ const Register = () => {
           placeholderTextColor="#FFF"
           labelStyle={styles.labelText}
           textColor='#FFF'
+          theme={{
+            colors: {
+              placeholder: '#FFF', // Set placeholder color to white
+              primary: '#FDAD00',
+            },
+          }}
         />
       </View>
 
@@ -89,6 +108,12 @@ const Register = () => {
           placeholderTextColor="#FFF"
           labelStyle={styles.labelText}
           textColor='#FFF'
+          theme={{
+            colors: {
+              placeholder: '#FFF', // Set placeholder color to white
+              primary: '#FDAD00',
+            },
+          }}
         />
       </View>
 

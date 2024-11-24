@@ -45,7 +45,7 @@ const RootLayout = () => {
           <Stack.Screen
             name="recover"
             options={{
-              title: 'Forgot Password?',
+              headerShown: false,
             }}
           />
           <Stack.Screen

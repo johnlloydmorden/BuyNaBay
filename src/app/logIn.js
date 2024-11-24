@@ -81,9 +81,9 @@ const LogInPage = () => {
               },
             }}
           />
-          {/* Check Circle Icon for Email Verification */}
+
           <View style={styles.verifyIcon}>
-            <Icon name="check-circle" size={20} color="#FDAD00" />
+            <Icon name="check-circle" size={20} color="blue" />
           </View>
         </View>
 

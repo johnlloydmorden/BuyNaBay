@@ -48,7 +48,6 @@ const Recover = () => {
           Enter your registered email address, and we'll send you a link to reset your password.
         </Text>
 
-        {/* Email Input */}
         <View style={styles.inputContainer}>
           <TextInput
             label="Email Address"

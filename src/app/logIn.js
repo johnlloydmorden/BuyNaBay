@@ -1,88 +1,157 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Image } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';  // Import useRouter
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
 
 const LogInPage = () => {
-  const router = useRouter();
+  const router = useRouter(); // Initialize router
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = () => {
     if (username && password) {
       router.push({
         pathname: 'dashboard',
-        params: { username }, // Pass username as a query param
+        params: { username },
       });
     } else {
       alert('Please enter your username and password');
     }
   };
 
-  // Load the Poppins font
+  const handleBackArrowPress = () => {
+    router.push('/intro'); // Navigate to the intro page when the back arrow is clicked
+  };
+
+  const handleForgotPasswordPress = () => {
+    router.push('/recover'); // Navigate to the recover page when the forgot password container is clicked
+  };
+
+  const handleSignUpPress = () => {
+    router.push('/register'); // Navigate to the register page when the signup text is clicked
+  };
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_600SemiBold,
   });
 
   if (!fontsLoaded) {
-    return null; // Optionally show a loading screen while fonts are loading
+    return null;
   }
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
-        <Text style={styles.logoText}>BuyNaBay</Text>
+        <TouchableOpacity onPress={handleBackArrowPress} style={styles.backArrow}>
+          <Icon name="chevron-left" size={20} color="#FDAD00" />
+        </TouchableOpacity>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
+          <Text style={styles.logoText}>BuyNaBay</Text>
+        </View>
       </View>
 
-      {/* Sign In text below the header */}
-      <Text style={styles.signInText}>Sign In</Text>
-
-      <View style={styles.inputContainer}>
-        <Icon name="user" size={20} color="#1B1B41" style={styles.icon} />
-        <TextInput
-          label="Username"
-          mode="outlined"
-          style={styles.input}
-          placeholderTextColor="#6b8f71"
-          value={username}
-          onChangeText={setUsername}
-        />
-      </View>
-
-      <View style={styles.inputContainer}>
-        <Icon name="key" size={20} color="#1B1B41" style={styles.icon} />
-        <TextInput
-          label="Password"
-          mode="outlined"
-          secureTextEntry
-          style={styles.input}
-          placeholderTextColor="#6b8f71"
-          value={password}
-          onChangeText={setPassword}
-        />
-      </View>
-
-      <Text
-        style={styles.forgotPasswordText}
-        onPress={() => router.push('recover')}
-      >
-        Forgot Password?
-      </Text>
-
-      <Button mode="contained" onPress={handleSignIn} style={styles.signInButton}>
-        Login
-      </Button>
-
-      <Text style={styles.signUpText}>
-        DON’T HAVE AN ACCOUNT?{' '}
-        <Text style={styles.signUpLink} onPress={() => router.push('register')}>
-          Sign up
+      {/* Content */}
+      <View style={styles.content}>
+        <Text style={styles.signInText}>Sign In</Text>
+        <Text style={styles.welcomeText}>
+          Welcome to BuyNaBay! You can continue to manage your finances.
         </Text>
-      </Text>
+
+        {/* Email Input */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            label="Email Address"
+            mode="flat"
+            style={styles.input}
+            placeholderTextColor="#FFF" // Set placeholder color to white
+            underlineColor="#FDAD00"
+            selectionColor="#FDAD00"
+            value={username}
+            onChangeText={setUsername}
+            theme={{
+              colors: {
+                text: '#FFF', // Set text color to white
+                placeholder: '#FFF', // Set placeholder color to white
+                primary: '#FDAD00',
+              },
+            }}
+          />
+          {/* Check Circle Icon for Email Verification */}
+          <View style={styles.verifyIcon}>
+            <Icon name="check-circle" size={20} color="#FDAD00" />
+          </View>
+        </View>
+
+        {/* Password Input */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            label="Password"
+            mode="flat"
+            secureTextEntry={!showPassword}
+            style={styles.input}
+            placeholderTextColor="#FFF" // Set placeholder color to white
+            underlineColor="#FDAD00"
+            selectionColor="#FDAD00"
+            value={password}
+            onChangeText={setPassword}
+            theme={{
+              colors: {
+                text: '#FFF', // Set text color to white
+                placeholder: '#FFF', // Set placeholder color to white
+                primary: '#FDAD00',
+              },
+            }}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
+            <Icon name={showPassword ? 'eye' : 'eye-slash'} size={20} color="#FFF" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Forgot Password */}
+        <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.forgotPasswordContainer}>
+          <View style={styles.forgotPasswordWrapper}>
+            <Icon name="lock" size={16} color="#FFF" />
+            <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
+
+            {/* Arrows with different opacity */}
+            <View style={styles.arrowContainer}>
+              <Icon name="chevron-right" size={16} color="rgba(255, 255, 255, 0.2)" />
+              <Icon name="chevron-right" size={16} color="rgba(255, 255, 255, 0.5)" />
+              <Icon name="chevron-right" size={16} color="rgba(255, 255, 255, 0.8)" />
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        {/* Sign In Button */}
+        <Button
+          mode="contained"
+          onPress={handleSignIn}
+          style={styles.signInButton}
+          labelStyle={styles.signInButtonText}
+        >
+          Sign In
+        </Button>
+
+        {/* Signup Prompt */}
+        <TouchableOpacity onPress={handleSignUpPress} style={styles.signupTextContainer}>
+          <Text style={styles.signupText}>Doesn't have an account? <Text style={styles.signupLink}>Signup</Text></Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Quick Login */}
+      <View style={styles.quickLoginContainer}>
+        <Text style={styles.quickLoginText}>
+          Enable <Text style={{ fontWeight: 'bold' }}>Face Lock</Text> or{' '}
+          <Text style={{ fontWeight: 'bold' }}>Touch Lock</Text>
+        </Text>
+        <Text style={styles.quickLoginSubText}>for quick sign in</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -90,71 +159,133 @@ const LogInPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#1b1b41',
     padding: 20,
-    backgroundColor: '#1b1b41', // Updated background color
   },
   header: {
-    flexDirection: 'row', // Row layout for logo and text
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
   },
+  backArrow: {
+    alignSelf: 'flex-start',
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   logo: {
-    width: 35, // Adjusted size for better alignment
-    height: 35,
+    width: 30,
+    height: 30,
     resizeMode: 'contain',
-    marginRight: 10, // Space between logo and text
+    marginRight: 10,
   },
   logoText: {
     fontSize: 20,
-    color: '#FFF', // White color for logo text
-    fontFamily: 'Poppins_600SemiBold', // Apply Poppins font
+    color: '#FFF',
+    fontFamily: 'Poppins_600SemiBold',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
   },
   signInText: {
-    fontSize: 50,
+    fontSize: 30,
     color: '#FFF',
-    fontFamily: 'Poppins_400Regular', // Apply Poppins font
-    marginBottom: 20,
+    fontFamily: 'Poppins_600SemiBold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  welcomeText: {
+    fontSize: 14,
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
+    textAlign: 'center',
+    marginBottom: 30,
   },
   inputContainer: {
     position: 'relative',
     width: '100%',
     marginBottom: 20,
   },
-  icon: {
-    position: 'absolute',
-    left: 22,
-    top: 20,
-    zIndex: 1,
-  },
   input: {
-    backgroundColor: '#ffffff',
-    color: '#3e7139',
-    paddingLeft: 40,
-    fontFamily: 'Poppins_400Regular', // Apply Poppins font to input fields
+    backgroundColor: '#1b1b41',
+    fontFamily: 'Poppins_400Regular',
+    color: '#FFF', // Set text color to white
+  },
+  verifyIcon: {
+    position: 'absolute',
+    right: 10,
+    top: 20,
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: 10,
+    top: 20,
+  },
+  forgotPasswordContainer: {
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 30,
+  },
+  forgotPasswordWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    width: '100%',
+    padding: 15,
+    borderRadius: 10,
   },
   forgotPasswordText: {
-    alignSelf: 'flex-end',
-    color: '#ffffff', // Adjusted to be visible on the dark background
-    marginBottom: 20,
-    fontSize: 14,
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
+    marginHorizontal: 10,
+    flex: 1,
+  },
+  arrowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  signupTextContainer: {
+    marginTop: 1,
+    alignItems: 'center',
+    
+  },
+  signupText: {
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
+  },
+  signupLink: {
+    color: '#FDAD00',
     fontWeight: 'bold',
-    fontFamily: 'Poppins_400Regular', // Apply Poppins font
   },
   signInButton: {
-    width: '100%',
-    paddingVertical: 10,
     backgroundColor: '#FDAD00',
+    borderRadius: 25,
+    paddingVertical: 10,
+    marginBottom: 30,
   },
-  signUpText: {
-    marginTop: 20,
+  signInButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontFamily: 'Poppins_600SemiBold',
+  },
+  quickLoginContainer: {
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  quickLoginText: {
     fontSize: 14,
-    color: '#ffffff', // Adjusted to be visible on the dark background
-    fontFamily: 'Poppins_400Regular', // Apply Poppins font
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
   },
-  signUpLink: {
-    fontWeight: 'bold',
+  quickLoginSubText: {
+    fontSize: 14,
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
   },
 });
 

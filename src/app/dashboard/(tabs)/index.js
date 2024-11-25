@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
 
-  // Main Action Buttons
+
   actionButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

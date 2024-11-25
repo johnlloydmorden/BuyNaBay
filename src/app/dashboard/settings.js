@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native'; // Import the navigation hook
+import { Image } from 'react-native';
 
 export default function Settings() {
   const navigation = useNavigation(); // Initialize the navigation hook
@@ -17,7 +18,10 @@ export default function Settings() {
 
       {/* Profile Section */}
       <View style={styles.profileSection}>
-        <Icon name="user-circle-o" size={60} color="#fff" style={styles.profileIcon} />
+      <Image
+            style={styles.profileImage}
+            source={require('../../../assets/Profile.jpg')}
+          />
         <Text style={styles.profileName}>Gabriel Felicitas</Text>
         <Text style={styles.profileEmail}>vertigo@gmail.com</Text>
         <TouchableOpacity style={styles.editProfileButton}>
@@ -88,8 +92,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  profileIcon: {
-    marginBottom: 10,
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   profileName: {
     fontSize: 20,

@@ -16,7 +16,7 @@ const ProfileScreen = ({ navigation }) => {
     <View style={[styles.container, isDarkMode ? styles.darkBackground : styles.lightBackground]}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
-      {/* Profile Header */}
+
       <View style={[styles.header, isDarkMode ? styles.darkHeader : styles.lightHeader]}>
         <Image
           style={styles.backgroundImage}

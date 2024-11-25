@@ -40,14 +40,7 @@ export default function DrawerLayout() {
             </View>
             <DrawerItemList {...props} />
             {/* Profile Drawer Item */}
-            <DrawerItem
-              label="Profile"
-              icon={() => (
-                <Icon name='user' color='#FF6F00' size={25} /> // Adjusted icon color for "BuyNaBay" theme
-              )}
-              labelStyle={{ fontSize: 18 }} // Inlined font size for label
-              onPress={() => router.push('/profile')} // Navigate to Profile page
-            />
+
             <DrawerItem
               label="Logout"
               icon={() => (
@@ -79,6 +72,10 @@ export default function DrawerLayout() {
               <Icon name='home' size={25} color='#FF6F00' /> // Adjusted icon color for "BuyNaBay" theme
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
+            headerStyle: {
+              backgroundColor: '#0D1B2A', // Set header background color
+            },
+            headerTintColor: '#F2C14E', // Set header title color to white
           }}
         />
         <Drawer.Screen
@@ -86,6 +83,7 @@ export default function DrawerLayout() {
           options={{
             drawerLabel: 'Settings',
             title: 'Settings',
+            headerShown: false,
             drawerIcon: () => (
               <Icon name='cogs' size={25} color='#FF6F00' /> // Adjusted icon color for Settings
             ),
@@ -98,6 +96,7 @@ export default function DrawerLayout() {
           options={{
             drawerLabel: 'Profile',
             title: 'Profile',
+            headerShown: false,
             drawerIcon: () => (
               <Icon name='user' size={25} color='#FF6F00' /> // Adjusted icon color for Profile
             ),

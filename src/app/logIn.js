@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useRouter } from 'expo-router';  // Import useRouter
+import { useRouter } from 'expo-router';  
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
-
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    text: '#FFF', // Set the global text color to white
-    primary: '#FFF', // Primary button and accent color
-    background: '#1b1b41', // Background color
-    surface: '#1b1b41', // Card/Surface background color
-    placeholder: '#B0B0B0', // Placeholder color
+    text: '#FFF',
+    primary: '#FFF',
+    background: '#1b1b41',
+    surface: '#1b1b41',
+    placeholder: '#B0B0B0',
   },
   fonts: {
     regular: { fontFamily: 'Poppins_400Regular' },
@@ -24,9 +23,8 @@ const theme = {
   },
 };
 
-
 const LogInPage = () => {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -38,20 +36,20 @@ const LogInPage = () => {
         params: { username },
       });
     } else {
-      alert('Please enter your username and password');
+      alert('Please enter correct credentials');
     }
   };
 
   const handleBackArrowPress = () => {
-    router.push('/intro'); // Navigate to the intro page when the back arrow is clicked
+    router.push('/intro');
   };
 
   const handleForgotPasswordPress = () => {
-    router.push('/recover'); // Navigate to the recover page when the forgot password container is clicked
+    router.push('/recover');
   };
 
   const handleSignUpPress = () => {
-    router.push('/register'); // Navigate to the register page when the signup text is clicked
+    router.push('/register');
   };
 
   const [fontsLoaded] = useFonts({
@@ -88,7 +86,7 @@ const LogInPage = () => {
             label="Email Address"
             mode="flat"
             style={styles.input}
-            placeholderTextColor="#FFF" // Set placeholder color to white
+            placeholderTextColor="#FFF"
             underlineColor="#FDAD00"
             selectionColor="#FDAD00"
             value={username}
@@ -96,12 +94,11 @@ const LogInPage = () => {
             textColor='#FFF'
             theme={{
               colors: {
-                placeholder: '#FFF', // Set placeholder color to white
+                placeholder: '#FFF',
                 primary: '#FDAD00',
               },
             }}
           />
-
           <View style={styles.verifyIcon}>
             <Icon name="check-circle" size={20} color="blue" />
           </View>
@@ -114,7 +111,7 @@ const LogInPage = () => {
             mode="flat"
             secureTextEntry={!showPassword}
             style={styles.input}
-            placeholderTextColor="#FFF" // Set placeholder color to white
+            placeholderTextColor="#FFF"
             underlineColor="#FDAD00"
             selectionColor="#FDAD00"
             value={password}
@@ -122,8 +119,8 @@ const LogInPage = () => {
             textColor='#FFF'
             theme={{
               colors: {
-                text: '#FFF', // Set text color to white
-                placeholder: '#FFF', // Set placeholder color to white
+                text: '#FFF',
+                placeholder: '#FFF',
                 primary: '#FDAD00',
               },
             }}
@@ -138,8 +135,6 @@ const LogInPage = () => {
           <View style={styles.forgotPasswordWrapper}>
             <Icon name="lock" size={16} color="#FFF" />
             <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
-
-            {/* Arrows with different opacity */}
             <View style={styles.arrowContainer}>
               <Icon name="chevron-right" size={16} color="rgba(255, 255, 255, 0.2)" />
               <Icon name="chevron-right" size={16} color="rgba(255, 255, 255, 0.5)" />
@@ -163,19 +158,11 @@ const LogInPage = () => {
           <Text style={styles.signupText}>Doesn't have an account? <Text style={styles.signupLink}>Signup</Text></Text>
         </TouchableOpacity>
       </View>
-
-      {/* Quick Login */}
-      <View style={styles.quickLoginContainer}>
-        <Text style={styles.quickLoginText}>
-          Enable <Text style={{ fontWeight: 'bold' }}>Face Lock</Text> or{' '}
-          <Text style={{ fontWeight: 'bold' }}>Touch Lock</Text>
-        </Text>
-        <Text style={styles.quickLoginSubText}>for quick sign in</Text>
-      </View>
     </SafeAreaView>
   );
 };
 
+// Styles for LogInPage
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -232,7 +219,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#1b1b41',
     fontFamily: 'Poppins_400Regular',
-    color: '#FFF', // Set text color to white
+    color: '#FFF',
   },
   verifyIcon: {
     position: 'absolute',
@@ -272,7 +259,6 @@ const styles = StyleSheet.create({
   signupTextContainer: {
     marginTop: 1,
     alignItems: 'center',
-    
   },
   signupText: {
     color: '#FFF',
@@ -306,6 +292,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#FFF',
     fontFamily: 'Poppins_400Regular',
+    fontWeight: 'bold',
   },
 });
 

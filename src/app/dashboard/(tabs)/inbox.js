@@ -1,17 +1,16 @@
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing MaterialIcons
 
 const Inbox = () => {
-  // List of people and their notification message
   const notifications = [
-    { id: '1', name: 'Gabriel Felicitas', message: 'Gabriel, gusto kaayo ko nga magtinabangay ta sa BuyNaBay project. Naa kay panahon?' },
-    { id: '2', name: 'John Lloyd Morden', message: 'John Lloyd, ganahan ko nga mag-apil sa BuyNaBay project. Unsaon nato pag-start?' },
-    { id: '3', name: 'Emmanuel Redoble', message: 'Emmanuel, lami kaayo ang BuyNaBay project. Naa ka’y oras para mag-uban ta?' },
-    { id: '4', name: 'Allyn Kyle Cambaya', message: 'Allyn Kyle, interesado ko nga magtrabaho sa BuyNaBay project. Pwede ba ta maghisgot?' },
-    { id: '5', name: 'John Kenneth Pang-an', message: 'John Kenneth, excited ko mag-apil sa BuyNaBay project. Karon ba ang imong schedule?' },
-    { id: '6', name: 'Evegen Dela Cruz', message: 'Evegen, nagandam ko para sa BuyNaBay project. Asa ta magsugod?' },
-    { id: '7', name: 'Alaiza Rose Olores', message: 'Alaiza Rose, andam ko nga mag-apil sa BuyNaBay project. Unsa may next step nato?' },
+    { id: '1', name: 'Allyn Kyle Cambaya', message: 'I really want us to work together on the BuyNaBay project. Do you have time?', image: require('../../../../assets/seller1.jpeg') },
+    { id: '2', name: 'Joevel Berana', message: 'I want to join the BuyNaBay project. How do we start?', image: require('../../../../assets/seller2.png') },
+    { id: '3', name: 'Emmanuel Redoble', message: 'Emmanuel, the BuyNaBay project is really interesting. Do you have time to join me?', image: require('../../../../assets/seller3.png') },
+    { id: '4', name: 'John Lloyd Morden', message: 'I’m interested in working on the BuyNaBay project. Can we discuss it?', image: require('../../../../assets/seller4.png') },
+    { id: '5', name: 'Alaiza Rose Olores', message: 'I’m excited to join the BuyNaBay project. What’s your schedule like now?', image: require('../../../../assets/seller5.png') },
+    { id: '6', name: 'Evegen Dela Cruz', message: 'I’m preparing for the BuyNaBay project. Where do we start?', image: require('../../../../assets/seller6.png') },
+    { id: '7', name: 'John Kenneth Pang-an', message: 'Kenneth, andam naba ka maka palit sa imong paborito nga baligya? Visit our store now!', image: require('../../../../assets/seller7.png') },
   ];
 
   return (
@@ -28,7 +27,10 @@ const Inbox = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.notificationCard}>
-            <Text style={styles.name}>{item.name}</Text>
+            <View style={styles.headerCard}>
+              <Image source={item.image} style={styles.profileImage} />
+              <Text style={styles.name}>{item.name}</Text>
+            </View>
             <Text style={styles.message}>{item.message}</Text>
           </View>
         )}
@@ -40,7 +42,7 @@ const Inbox = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#0D1B2A', // Dark background to match theme
     padding: 15,
   },
   header: {
@@ -56,12 +58,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginLeft: 45,
-    color: '#000',
+    color: '#FFFFFF', // White title text for contrast
     textAlign: 'center',
     flex: 1, // Make title take up available space between icons
   },
   notificationCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#1F2A3D', // Dark background for notification cards
     borderRadius: 10,
     padding: 15,
     marginBottom: 20,
@@ -70,16 +72,27 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
     borderLeftWidth: 5,
-    borderLeftColor: '#3e7139',
+    borderLeftColor: '#3e7139', // Greenish left border for emphasis
+  },
+  headerCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20, // Circular image
+    marginRight: 10,
   },
   name: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#6b8f71',
+    color: '#FF6F00', // Accent color for names
   },
   message: {
     fontSize: 16,
-    color: '#7a7a7a',
+    color: '#A0A0A0', // Lighter text for message content
     marginTop: 5,
   },
 });

@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';  // Import useRouter
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
+
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    text: '#FFF', // Set the global text color to white
+    primary: '#FFF', // Primary button and accent color
+    background: '#1b1b41', // Background color
+    surface: '#1b1b41', // Card/Surface background color
+    placeholder: '#B0B0B0', // Placeholder color
+  },
+  fonts: {
+    regular: { fontFamily: 'Poppins_400Regular' },
+    medium: { fontFamily: 'Poppins_500Medium' },
+    light: { fontFamily: 'Poppins_300Light' },
+    thin: { fontFamily: 'Poppins_100Thin' },
+  },
+};
+
 
 const LogInPage = () => {
   const router = useRouter(); // Initialize router
@@ -73,17 +93,17 @@ const LogInPage = () => {
             selectionColor="#FDAD00"
             value={username}
             onChangeText={setUsername}
+            textColor='#FFF'
             theme={{
               colors: {
-                text: '#FFF', // Set text color to white
                 placeholder: '#FFF', // Set placeholder color to white
                 primary: '#FDAD00',
               },
             }}
           />
-          {/* Check Circle Icon for Email Verification */}
+
           <View style={styles.verifyIcon}>
-            <Icon name="check-circle" size={20} color="#FDAD00" />
+            <Icon name="check-circle" size={20} color="blue" />
           </View>
         </View>
 
@@ -99,6 +119,7 @@ const LogInPage = () => {
             selectionColor="#FDAD00"
             value={password}
             onChangeText={setPassword}
+            textColor='#FFF'
             theme={{
               colors: {
                 text: '#FFF', // Set text color to white

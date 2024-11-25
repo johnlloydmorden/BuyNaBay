@@ -1,37 +1,82 @@
-// app/recover.js
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet, View, Image } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { SafeAreaView, Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { TextInput, Button, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // MaterialIcons for standard icons
+import { useRouter } from 'expo-router';
 
-const Recover = ({ navigation }) => {
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    text: '#FFF', // Set the global text color to white
+    primary: '#FFF', // Primary button and accent color
+    background: '#1b1b41', // Background color
+    surface: '#1b1b41', // Card/Surface background color
+    placeholder: '#B0B0B0', // Placeholder color
+  },
+  fonts: {
+    regular: { fontFamily: 'Poppins_400Regular' },
+    medium: { fontFamily: 'Poppins_500Medium' },
+    light: { fontFamily: 'Poppins_300Light' },
+    thin: { fontFamily: 'Poppins_100Thin' },
+  },
+};
+
+const Recover = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <View style={styles.circleContainer}>
-          <Image source={require('../assets/AppLogo.png')} style={styles.logo} resizeMode="cover" />
+      {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <Icon name="chevron-left" size={24} color="#FDAD00" />
+        </TouchableOpacity>
+      </View>
+
+      {/* Centered Content */}
+      <View style={styles.centeredContent}>
+        {/* Logo */}
+        <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} resizeMode="contain" />
+        {/* BuyNaBay Title */}
+        <Text style={styles.buyNaBayTitle}>BuyNaBay</Text>
+        {/* Page Title */}
+        <Text style={styles.title}>Recover Password</Text>
+
+        {/* Subtitle */}
+        <Text style={styles.subtitle}>
+          Enter your registered email address, and we'll send you a link to reset your password.
+        </Text>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            label="Email Address"
+            mode="outlined"
+            style={styles.input}
+            placeholder="Enter your email"
+            placeholderTextColor="#FFF"
+            underlineColor="#FDAD00"
+            activeOutlineColor="#FDAD00"
+            textColor='#FFF'
+            left={<TextInput.Icon name="email" color="#FDAD00" size={20} />} // Adjusted icon size and color
+          />
+        </View>
+
+        {/* Recover Button */}
+        <Button mode="contained" onPress={() => console.log('Recovering...')} style={styles.recoverButton}>
+          Send Recovery Email
+        </Button>
+
+        {/* Sign In Option */}
+        <View style={styles.signInContainer}>
+          <Text style={styles.signInText}>
+            Remembered your password?{' '}
+            <Text style={styles.signInLink} onPress={() => router.push('/logIn')}>
+              Sign In
+            </Text>
+          </Text>
         </View>
       </View>
-
-      <Text style={styles.title}>Recover Password</Text>
-
-      <Text style={styles.instructionText}>
-        Enter your email address below, and we'll send you a link to reset your password.
-      </Text>
-
-      <View style={styles.inputContainer}>
-        <Icon name="envelope" size={20} color="#3e7139" style={styles.icon} />
-        <TextInput
-          label="Email"
-          mode="outlined"
-          style={styles.input}
-          placeholderTextColor="#6b8f71"
-        />
-      </View>
-
-      <Button mode="contained" onPress={() => {}} style={styles.resetButton}>
-        Send Reset Link
-      </Button>
     </SafeAreaView>
   );
 };
@@ -39,66 +84,81 @@ const Recover = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#1b1b41',
     padding: 20,
-    backgroundColor: '#f0f0f0',
   },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  circleContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 5,
-    overflow: 'hidden',
-  },
-  logo: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#3e7139',
-    marginBottom: 20,
-  },
-  instructionText: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: '#3e7139',
-    marginBottom: 30,
-  },
-  inputContainer: {
-    position: 'relative',
-    width: '100%',
-    marginBottom: 20,
-  },
-  icon: {
+  header: {
     position: 'absolute',
-    left: 22,
-    top: 20,
+    top: 0,
+    left: 0,
+    right: 0,
+    padding: 10,
     zIndex: 1,
   },
-  input: {
-    backgroundColor: '#ffffff',
-    color: '#3e7139',
-    paddingLeft: 40,
+  backButton: {
+    padding: 5,
   },
-  resetButton: {
+  centeredContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50, // Adjusted to account for header
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    marginBottom: 10,
+  },
+  buyNaBayTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FDAD00',
+    fontFamily: 'Poppins',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Poppins',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#B0B0B0',
+    textAlign: 'center',
+    marginBottom: 30,
+    fontFamily: 'Poppins',
+  },
+  inputContainer: {
     width: '100%',
-    paddingVertical: 10,
-    backgroundColor: '#6b8f71',
+    marginBottom: 15,
+  },
+  input: {
+    backgroundColor: '#1b1b41',
+    color: '#FFF',
+    fontFamily: 'Poppins_400Regular',
+  },
+  recoverButton: {
+    width: '100%',
+    paddingVertical: 12,
+    backgroundColor: '#FDAD00',
+    borderRadius: 25,
+    marginTop: 20,
+  },
+  signInContainer: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  signInText: {
+    color: '#FFF',
+    fontSize: 14,
+    fontFamily: 'Poppins',
+  },
+  signInLink: {
+    fontWeight: 'bold',
+    color: '#FDAD00',
   },
 });
 

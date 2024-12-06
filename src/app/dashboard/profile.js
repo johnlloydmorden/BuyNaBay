@@ -13,36 +13,22 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={[styles.container, isDarkMode ? styles.darkBackground : styles.lightBackground]}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-
-
-      <View style={[styles.header, isDarkMode ? styles.darkHeader : styles.lightHeader]}>
-        <Image
-          style={styles.backgroundImage}
-          source={require('../../../assets/bg3.gif')}
-        />
-        <View style={styles.profileContainer}>
-          <Image
-            style={styles.profileImage}
-            source={require('../../../assets/Profile.jpg')}
-          />
-          <View style={styles.textContainer}>
-            <Text style={[styles.name, styles.darkText]}>
-              Gabriel
-            </Text>
-            <Text style={[styles.surname, isDarkMode ? styles.darkText : styles.blackText]}>
-              Felicitas
-            </Text>
-            <View style={[styles.statusContainer, styles.statusOffset]}>
-              <MaterialCommunityIcons name="check-circle" size={20} color="#00FF00" />
-              <Text style={[styles.status, isDarkMode ? styles.darkText : styles.lightText]}>
-                Active
-              </Text>
-            </View>
-          </View>
-        </View>
+    <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={openDrawer} style={styles.drawerIcon}>
+          <Icon name="bars" size={24} color="#1B1B41" />
+        </TouchableOpacity>
+        <Text style={styles.logo}>Profile</Text>
       </View>
+
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <Image source={require('../../assets/joevel.jpeg')} style={styles.profileImage} />
+
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameText}>Joevel Berana</Text>
+          <Icon name="check-circle" size={18} color="#FDAD00" style={styles.verifiedIcon} />
+        </View>
 
       {/* User Stats */}
       <View style={styles.statsContainer}>
@@ -103,37 +89,38 @@ const ProfileOption = ({ title, icon, isDarkMode, rightComponent, onPress }) => 
 
 // Styles
 const styles = StyleSheet.create({
-  // Container
-  container: { flex: 1 },
-  
-  // Backgrounds
-  darkBackground: { backgroundColor: '#000' },
-  lightBackground: { backgroundColor: '#fff' },
-
-  // Header
-  header: { 
-    alignItems: 'flex-start', 
-    height: 250, 
-    overflow: 'hidden', 
-    borderBottomLeftRadius: 30, 
-    borderBottomRightRadius: 30 
+  container: {
+    flex: 1,
+    backgroundColor: '#1B1B41', // Dark blue background
   },
-  darkHeader: { backgroundColor: '#333' },
-  lightHeader: { backgroundColor: 'transparent' },
-  backgroundImage: { 
-    position: 'absolute', 
-    width: '100%', 
-    height: '75%', 
-    top: -25, 
-    resizeMode: 'cover' 
+  header: {
+    position: 'absolute', // Fix header on top
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    zIndex: 10,
+    borderBottomWidth: 0,
+    borderBottomColor: 'black',
   },
-
-  // Profile Image and Text
-  profileContainer: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    marginHorizontal: 20, 
-    marginTop: 90 
+  drawerIcon: {
+    marginRight: 16,
+  },
+  logo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    flex: 1,
+    marginRight: 200,
+    color: '#1B1B41', // Vibrant yellow color
+  },
+  scrollViewContainer: {
+    alignItems: 'center',
+    paddingTop: 80, // Adjust padding to avoid overlap with header
+    paddingBottom: 20,
   },
   profileImage: { 
     width: 140, 

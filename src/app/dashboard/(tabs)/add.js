@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, ScrollView, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-const AddPhotoFeature = () => {
+export default function Add() {
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');

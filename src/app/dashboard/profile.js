@@ -45,41 +45,11 @@ const ProfileScreen = () => {
           </View>
           <View style={styles.stat}>
             <Text style={styles.statValue}>50</Text>
-            <Text style={styles.statLabel}>Projects</Text>
+            <Text style={styles.statLabel}>Products</Text>
           </View>
         </View>
 
         <View style={styles.divider} />
-
-        <View style={styles.skillsContainer}>
-          <Text style={styles.skillsTitle}>Programming Skills</Text>
-
-          <View style={styles.skillBarContainer}>
-            <Text style={styles.skillLabel}>JavaScript</Text>
-            <View style={styles.progressBar}>
-              <View style={styles.progress} />
-            </View>
-          </View>
-
-          <View style={styles.skillBarContainer}>
-            <Text style={styles.skillLabel}>React Native</Text>
-            <View style={styles.progressBar}>
-              <View style={styles.progress} />
-            </View>
-          </View>
-
-          <View style={styles.skillBarContainer}>
-            <Text style={styles.skillLabel}>Node.js</Text>
-            <View style={styles.progressBar}>
-              <View style={styles.progress} />
-            </View>
-          </View>
-        </View>
-
-        <TouchableOpacity style={styles.editSkillsButton}>
-          <Text style={styles.editSkillsText}>Edit/Add Skills</Text>
-          <Icon name="edit" size={16} color="#fff" style={styles.editSkillsIcon} />
-        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -181,52 +151,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#fff', // White divider
     marginVertical: 20,
-  },
-  skillsContainer: {
-    width: '90%',
-    marginBottom: 20,
-  },
-  skillsTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#FDAD00', // Vibrant yellow color for title
-  },
-  skillBarContainer: {
-    marginBottom: 10,
-  },
-  skillLabel: {
-    fontSize: 14,
-    color: '#fff', // White text color for skill labels
-  },
-  progressBar: {
-    width: '100%',
-    height: 5,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 5,
-  },
-  progress: {
-    height: '100%',
-    width: '80%',
-    backgroundColor: '#FDAD00', // Vibrant yellow progress
-    borderRadius: 5,
-  },
-  editSkillsButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    backgroundColor: '#FDAD00', // Vibrant yellow button
-  },
-  editSkillsText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginRight: 8,
-    color: '#fff', // White text for skills edit button
-  },
-  editSkillsIcon: {
-    marginLeft: 5,
   },
 });
 

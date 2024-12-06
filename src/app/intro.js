@@ -1,9 +1,20 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  StyleSheet, 
+  Image, 
+  TouchableOpacity, 
+  Dimensions, 
+  Platform 
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import AppLoading from 'expo-app-loading';
+
+const { width, height } = Dimensions.get('window');
 
 const WelcomeScreen = () => {
   const router = useRouter();
@@ -49,16 +60,20 @@ const WelcomeScreen = () => {
             money, and connect with fellow students in a secure, easy-to-use platform. Buy smart, sell fast –
             all within your campus community.
           </Text>
-        </View>
-
-        {/* Navigation Arrows */}
+            {/* Navigation Arrows */}
         <TouchableOpacity style={styles.arrowButton} onPress={navigateToLogin}>
           <View style={styles.arrowRow}>
+            <Text style={[styles.arrow, { opacity: 0.1 }]}> &gt; </Text>
+            <Text style={[styles.arrow, { opacity: 0.19 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.3 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.5 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.7 }]}> &gt; </Text>
           </View>
         </TouchableOpacity>
+        </View>
+        <View style={styles.arrowRow}>
+        </View>
+      
       </SafeAreaView>
     </LinearGradient>
   );
@@ -71,60 +86,56 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 30,
+    alignItems: 'flex-start', 
+    paddingTop: Platform.OS === 'ios' ? 50 : 30,
+    paddingBottom: 20,
     paddingHorizontal: 20,
   },
   header: {
-    flexDirection: 'row', // Row layout for logo and text
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 15,
     marginBottom: 30,
+    alignSelf: 'center', // Center-align header
   },
   logo: {
-    width: 35, // Adjusted size for better alignment
-    height: 35,
+    width: width * 0.1,
+    height: width * 0.1,
     resizeMode: 'contain',
-    marginRight: 2, // Space between logo and text
+    marginRight: 10,
   },
   logoText: {
-    fontSize: 20,
+    fontSize: width * 0.05,
     color: '#FFF',
   },
   content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10,
+    width: '100%',
+    marginTop: -100,
+    paddingHorizontal: 40,
   },
   title: {
-    fontSize: 35,
+    fontSize: width * 0.086,
     color: '#ffffff',
-    textAlign: 'center',
-    marginBottom: 20,
+    textAlign: 'left', 
+    marginBottom: height * 0.02,
   },
   description: {
-    fontSize: 16,
+    fontSize: width * 0.039,
     color: '#d1d1d1',
-    textAlign: 'left', // Left-aligned text
-    lineHeight: 24,
-    paddingHorizontal: 10,
+    textAlign: 'justify', 
+    marginBottom: height * 0.04,
   },
   arrowButton: {
-    marginBottom: 50,
-    marginTop: 5,
-    alignItems: 'center',
-    marginRight: 200,
+   
   },
   arrowRow: {
-    flexDirection: 'row', // Row layout for arrows
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   arrow: {
-    fontSize: 32, // Size of each arrow
+    fontSize: width * 0.09,
     color: '#FFF',
-    marginHorizontal: -3, // Reduced space between arrows
+    marginHorizontal: -10,
   },
 });
 

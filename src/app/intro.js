@@ -105,11 +105,13 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 22,
     color: '#FFF',
+    fontFamily: 'Poppins_600SemiBold',
   },
   content: {
-    width: '100%',
-    marginTop: -100,
-    paddingHorizontal: 40,
+    flex: 1,
+    justifyContent: 'center',
+    margin: 20,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 37,

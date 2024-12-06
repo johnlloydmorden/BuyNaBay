@@ -16,6 +16,7 @@ const theme = {
     placeholder: '#B0B0B0',
   },
   fonts: {
+    bold: { fontFamily: 'Poppins_700Bold' },
     regular: { fontFamily: 'Poppins_400Regular' },
     medium: { fontFamily: 'Poppins_500Medium' },
     light: { fontFamily: 'Poppins_300Light' },
@@ -100,7 +101,7 @@ const LogInPage = () => {
             }}
           />
           <View style={styles.verifyIcon}>
-            <Icon name="check-circle" size={20} color="blue" />
+            <Icon name="check-circle" size={25} color="#4FB6EC" />
           </View>
         </View>
 
@@ -167,7 +168,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1b1b41',
-    padding: 20,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
   },
   header: {
     flexDirection: 'row',
@@ -179,13 +181,15 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: 10,
   },
   logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   logo: {
-    width: 40,
+    width: 30,
     height: 40,
     resizeMode: 'contain',
     marginRight: 10,
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 22,
     color: '#FFF',
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: 'Poppins_700Bold',
   },
   content: {
     flex: 1,
@@ -201,9 +205,10 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   signInText: {
-    fontSize: 30,
+    fontSize: 45,
     color: '#FFF',
-    fontFamily: 'Poppins_600SemiBold',
+    fontWeight: 900,
+    fontFamily: 'Poppins',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -245,7 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     width: '100%',
-    padding: 15,
+    padding: 30,
     borderRadius: 10,
   },
   forgotPasswordText: {

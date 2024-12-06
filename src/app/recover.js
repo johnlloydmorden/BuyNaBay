@@ -32,15 +32,14 @@ const Recover = () => {
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Icon name="chevron-left" size={35} color="#FDAD00" />
         </TouchableOpacity>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
+          <Text style={styles.logoText}>BuyNaBay</Text>
+        </View>
       </View>
 
       {/* Centered Content */}
-      <View style={styles.centeredContent}>
-        {/* Logo */}
-        <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} resizeMode="contain" />
-        {/* BuyNaBay Title */}
-        <Text style={styles.buyNaBayTitle}>BuyNaBay</Text>
-        {/* Page Title */}
+      <View style={styles.Content}>
         <Text style={styles.title}>Recover Password</Text>
 
         {/* Subtitle */}
@@ -85,7 +84,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1b1b41',
-    padding: 20,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
   },
   header: {
     flexDirection: 'row',
@@ -95,30 +95,33 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     margin: 20,
   },
-  backButton: {
+  backArrow: {
     alignSelf: 'flex-start',
   },
-  centeredContent: {
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 30,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 10,
+  },
+  logoText: {
+    fontSize: 22,
+    color: '#FFF',
+    fontFamily: 'Poppins_700Bold',
+  },
+  Content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50, // Adjusted to account for header
-  },
-  logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 10,
-  },
-  buyNaBayTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FDAD00',
-    fontFamily: 'Poppins',
-    marginBottom: 20,
+    margin: 20,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: 45,
+    fontWeight: 900,
     color: '#FFF',
     textAlign: 'center',
     fontFamily: 'Poppins',

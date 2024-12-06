@@ -29,23 +29,21 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        {/* Back Button */}
-        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Icon name="chevron-left" size={30} color="#FDAD00" />
-        </TouchableOpacity>
-
-        {/* Logo and Title */}
-        <View style={styles.headerContent}>
-          <Image source={require('../assets/BuyNaBay.png')} style={styles.headerLogo} resizeMode="contain" />
-          <Text style={styles.headerTitle}>BuyNaBay</Text>
-        </View>
+    {/* Header */}
+    <View style={styles.header}>
+      <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+        <Icon name="chevron-left" size={35} color="#FDAD00" />
+      </TouchableOpacity>
+      <View style={styles.logoContainer}>
+        <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
+        <Text style={styles.logoText}>BuyNaBay</Text>
       </View>
+    </View>
 
+    <View style={styles.Content}>
       <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.subtitle}>Create an account so you can manage your personal finances</Text>
-
+ 
       {/* Input Fields */}
       <View style={styles.inputContainer}>
         <TextInput
@@ -150,6 +148,7 @@ const Register = () => {
           </TouchableOpacity>
         </View>
       </View>
+    </View> 
     </SafeAreaView>
   );
 };
@@ -157,48 +156,55 @@ const Register = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#1b1b41',
-    fontFamily: 'Poppins', // Set global font to Poppins
+    paddingBottom: 20,
+    paddingHorizontal: 20,
   },
   header: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 30,
     marginBottom: 20,
+    margin: 20,
   },
-  backButton: {
-    marginRight: 10,
+  backArrow: {
+    alignSelf: 'flex-start',
   },
-  headerContent: {
+  logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end', // Align the logo and title to the right
-    flex: 1,
   },
-  headerLogo: {
-    width: 40,
+  logo: {
+    width: 30,
     height: 40,
+    resizeMode: 'contain',
+    marginRight: 10,
   },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  logoText: {
+    fontSize: 22,
     color: '#FFF',
-    marginLeft: 10, // Space between the logo and text
-    fontFamily: 'Poppins', // Ensure Poppins font for title
+    fontFamily: 'Poppins_700Bold',
+  },
+  Content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: 45,
+    fontWeight: 900,
     color: '#FFF',
     textAlign: 'center',
     fontFamily: 'Poppins', // Ensure Poppins font for title
-    marginBottom: 10,
+    marginBottom: 20,
   },
   subtitle: {
     fontSize: 14,
     color: '#B0B0B0', // Lighter gray color for subtitle to appear faded
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
     fontFamily: 'Poppins', // Ensure Poppins font for subtitle
   },
   inputContainer: {

@@ -1,139 +1,162 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons
+import { View, Text, TextInput, StyleSheet, Button, ScrollView, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
-const Add = () => {
-  const [title, setTitle] = useState('');
+const AddPhotoFeature = () => {
+  const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
-  const [rate, setRate] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
+  const [address, setAddress] = useState('');
+  const [image, setImage] = useState(null); // State to store the selected image
 
-  const handlePost = () => {
-    // Handle the post logic (e.g., storing the project details)
-    console.log('Project Posted:', { title, description, rate });
-    // Reset fields after posting
-    setTitle('');
-    setDescription('');
-    setRate('');
+  // Function to handle photo selection
+  const pickImage = async () => {
+    // Request permission to access media library
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted) {
+      // Launch the image picker if permission is granted
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+      });
+
+      if (!result.canceled) {
+        setImage(result.assets[0].uri); // Set the image URI to state
+      }
+    } else {
+      alert('Permission to access the media library is required!');
+    }
   };
 
-  const handleSaveDraft = () => {
-    // Handle saving the draft logic
-    console.log('Project Saved as Draft:', { title, description, rate });
-    // Reset fields after saving as draft
-    setTitle('');
-    setDescription('');
-    setRate('');
+  const handleAddItem = () => {
+    // Logic to handle item addition (e.g., send data to a server)
+    console.log({
+      itemName,
+      description,
+      price,
+      category,
+      address,
+      image, // Include the image URI in the submission
+    });
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add Project Idea</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.header}>Add Photo</Text>
 
-      <Text style={styles.label}>Project Title</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter project title"
-        value={title}
-        onChangeText={setTitle}
-      />
-
-      <Text style={styles.label}>Project Description</Text>
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        placeholder="Enter project description"
-        value={description}
-        onChangeText={setDescription}
-        multiline
-      />
-
-      <Text style={styles.label}>Estimated Rate</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter estimated rate"
-        value={rate}
-        onChangeText={setRate}
-        keyboardType="numeric"
-      />
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.postButton} onPress={handlePost}>
-          <Icon name="check" size={15} color="#fff" />
-          <Text style={styles.postText}>Publish</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.draftButton} onPress={handleSaveDraft}>
-          <Icon name="save" size={15} color="#fff" />
-          <Text style={styles.draftText}>Save as Draft</Text>
-        </TouchableOpacity>
+      {/* Add Photo Button */}
+      <View style={styles.imageContainer}>
+        <Button title="Pick an Image" onPress={pickImage} color="#FF6F00" />
+        {image && (
+          <Image source={{ uri: image }} style={styles.imagePreview} />
+        )}
       </View>
-    </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Item Name</Text>
+        <TextInput
+          style={styles.input}
+          value={itemName}
+          onChangeText={setItemName}
+          placeholder="Enter item name"
+          placeholderTextColor="#A0A0A0"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Description</Text>
+        <TextInput
+          style={styles.input}
+          value={description}
+          onChangeText={setDescription}
+          placeholder="Enter item description"
+          placeholderTextColor="#A0A0A0"
+          multiline
+          numberOfLines={4}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Price</Text>
+        <TextInput
+          style={styles.input}
+          value={price}
+          onChangeText={setPrice}
+          placeholder="Enter item price"
+          placeholderTextColor="#A0A0A0"
+          keyboardType="numeric"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Category</Text>
+        <TextInput
+          style={styles.input}
+          value={category}
+          onChangeText={setCategory}
+          placeholder="Enter item category"
+          placeholderTextColor="#A0A0A0"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Address</Text>
+        <TextInput
+          style={styles.input}
+          value={address}
+          onChangeText={setAddress}
+          placeholder="Enter item location"
+          placeholderTextColor="#A0A0A0"
+        />
+      </View>
+
+      <Button title="Add Item" onPress={handleAddItem} color="#FF6F00" />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
+    flexGrow: 1,
     padding: 20,
+    backgroundColor: '#0D1B2A', // Background color aligning with the theme
   },
-  title: {
+  header: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#00',
-    textAlign: 'center',
+    color: '#FF6F00', // Accent color for headings
     marginBottom: 20,
+    textAlign: 'center',
+  },
+  imageContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  imagePreview: {
+    width: 200,
+    height: 200,
+    marginTop: 10,
+    borderRadius: 10,
+    borderColor: '#FF6F00',
+    borderWidth: 2,
+  },
+  inputContainer: {
+    marginBottom: 15,
   },
   label: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
+    color: '#A0A0A0',
+    fontSize: 14,
     marginBottom: 5,
   },
   input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
+    backgroundColor: '#1F2A3D', // Slightly darker background for input fields
+    color: '#FFFFFF', // Text color for the input fields
+    padding: 10,
     borderRadius: 5,
-    paddingLeft: 10,
-    marginBottom: 15,
-    backgroundColor: '#fff',
-  },
-  textArea: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  postButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#3e7139',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    marginRight: 10, // Add spacing between buttons
-  },
-  draftButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#8a8a8a', // Grey color for save as draft button
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-  },
-  postText: {
-    color: '#fff',
-    fontSize: 14,
-    marginLeft: 8,
-  },
-  draftText: {
-    color: '#fff',
-    fontSize: 14,
-    marginLeft: 8,
+    fontSize: 16,
   },
 });
 
-export default Add;
+export default AddPhotoFeature;

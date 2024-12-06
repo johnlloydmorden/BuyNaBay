@@ -173,7 +173,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 30,
     marginBottom: 20,
+    margin: 20,
   },
   backArrow: {
     alignSelf: 'flex-start',
@@ -183,19 +185,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
     marginRight: 10,
   },
   logoText: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#FFF',
     fontFamily: 'Poppins_600SemiBold',
   },
   content: {
     flex: 1,
     justifyContent: 'center',
+    margin: 20,
   },
   signInText: {
     fontSize: 30,

@@ -30,7 +30,7 @@ const Recover = () => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Icon name="chevron-left" size={24} color="#FDAD00" />
+          <Icon name="chevron-left" size={35} color="#FDAD00" />
         </TouchableOpacity>
       </View>
 
@@ -88,15 +88,15 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    padding: 10,
-    zIndex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 20,
+    margin: 20,
   },
   backButton: {
-    padding: 5,
+    alignSelf: 'flex-start',
   },
   centeredContent: {
     flex: 1,

@@ -64,7 +64,6 @@ const WelcomeScreen = () => {
         <TouchableOpacity style={styles.arrowButton} onPress={navigateToLogin}>
           <View style={styles.arrowRow}>
             <Text style={[styles.arrow, { opacity: 0.1 }]}> &gt; </Text>
-            <Text style={[styles.arrow, { opacity: 0.19 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.3 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.5 }]}> &gt; </Text>
             <Text style={[styles.arrow, { opacity: 0.7 }]}> &gt; </Text>
@@ -87,25 +86,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'flex-start', 
-    paddingTop: Platform.OS === 'ios' ? 50 : 30,
     paddingBottom: 20,
     paddingHorizontal: 20,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 30,
     marginBottom: 30,
     alignSelf: 'center', // Center-align header
   },
   logo: {
-    width: width * 0.1,
-    height: width * 0.1,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
     marginRight: 10,
   },
   logoText: {
-    fontSize: width * 0.05,
+    fontSize: 22,
     color: '#FFF',
   },
   content: {
@@ -114,16 +112,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   title: {
-    fontSize: width * 0.086,
+    fontSize: 37,
     color: '#ffffff',
     textAlign: 'left', 
-    marginBottom: height * 0.02,
+    marginBottom: 20,
   },
   description: {
-    fontSize: width * 0.039,
+    fontSize: 17,
     color: '#d1d1d1',
     textAlign: 'justify', 
-    marginBottom: height * 0.04,
+    marginBottom: 30,
   },
   arrowButton: {
    
@@ -133,9 +131,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   arrow: {
-    fontSize: width * 0.09,
+    fontSize: 40,
     color: '#FFF',
-    marginHorizontal: -10,
+    marginHorizontal: -9,
   },
 });
 

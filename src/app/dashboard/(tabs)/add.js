@@ -121,12 +121,12 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 20,
-    backgroundColor: '#0D1B2A', // Background color aligning with the theme
+    backgroundColor: '#FFECB3', // Light creamy background
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF6F00', // Accent color for headings
+    color: '#000', // Accent color for headings
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -139,24 +139,24 @@ const styles = StyleSheet.create({
     height: 200,
     marginTop: 10,
     borderRadius: 10,
-    borderColor: '#FF6F00',
+    borderColor: '#FF6F00', // Accent border for the image preview
     borderWidth: 2,
   },
   inputContainer: {
     marginBottom: 15,
   },
   label: {
-    color: '#A0A0A0',
+    color: '#000', // Black for label text
     fontSize: 14,
     marginBottom: 5,
   },
   input: {
-    backgroundColor: '#1F2A3D', // Slightly darker background for input fields
-    color: '#FFFFFF', // Text color for the input fields
+    backgroundColor: '#FFF', // White background for input fields
+    color: '#000', // Black text for input fields
     padding: 10,
     borderRadius: 5,
     fontSize: 16,
+    borderWidth: 1, // Add subtle border
+    borderColor: '#fff', // Accent border color for input fields
   },
 });
-
-export default AddPhotoFeature;

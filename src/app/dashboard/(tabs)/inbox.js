@@ -1,8 +1,7 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing MaterialIcons
-
-const Inbox = () => {
+export default function Inbox() {
   const notifications = [
     { id: '1', name: 'Allyn Kyle Cambaya', message: 'I really want us to work together on the BuyNaBay project. Do you have time?', image: require('../../../../assets/seller1.jpeg') },
     { id: '2', name: 'Joevel Berana', message: 'I want to join the BuyNaBay project. How do we start?', image: require('../../../../assets/seller2.png') },
@@ -37,7 +36,7 @@ const Inbox = () => {
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

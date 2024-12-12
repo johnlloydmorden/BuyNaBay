@@ -222,11 +222,12 @@ const styles = StyleSheet.create({
 
   // Title and subtitle styles
   title: { 
-    fontSize: 32, 
-    fontWeight: 'bold', 
-    color: '#FFF', 
-    textAlign: 'center', 
-    marginBottom: 10 
+    fontSize: 45,
+    fontWeight: 900,
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Poppins',
+    marginBottom: 10,
   },
   subtitle: { 
     fontSize: 14, 

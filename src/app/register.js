@@ -96,6 +96,7 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+
      {/* Header */}
      <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
@@ -108,6 +109,19 @@ const Register = () => {
       </View>
 
       <View style={styles.Content}>
+
+      {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <Icon name="chevron-left" size={30} color="#FDAD00" />
+        </TouchableOpacity>
+
+        <View style={styles.headerContent}>
+          <Image source={require('../assets/BuyNaBay.png')} style={styles.headerLogo} resizeMode="contain" />
+          <Text style={styles.headerTitle}>BuyNaBay</Text>
+        </View>
+      </View>
+
       <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.subtitle}>Create an account to get started</Text>
 
@@ -186,6 +200,7 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: '#1b1b41',
@@ -193,6 +208,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   header: {
+  // General container styles
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: '#1b1b41', 
+    paddingHorizontal: 20,
+  },
+
+  // Header styles
+  header: { 
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -239,6 +264,41 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontFamily: 'Poppins',
   },
+  backButton: { 
+    marginRight: 10 
+  },
+  headerContent: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'flex-end', 
+    flex: 1 
+  },
+  headerLogo: { 
+    width: 40, 
+    height: 40 
+  },
+  headerTitle: { 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    color: '#FFF', 
+    marginLeft: 10 
+  },
+
+  // Title and subtitle styles
+  title: { 
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    color: '#FFF', 
+    textAlign: 'center', 
+    marginBottom: 10 
+  },
+  subtitle: { 
+    fontSize: 14, 
+    color: '#B0B0B0', 
+    textAlign: 'center', 
+    marginBottom: 30 
+  },
+
   // Input styles
   inputContainer: { 
     width: '100%', 
@@ -274,3 +334,4 @@ const styles = StyleSheet.create({
 });
 
 export default Register;
+

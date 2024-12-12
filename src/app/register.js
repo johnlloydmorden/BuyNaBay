@@ -96,15 +96,14 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
+     {/* Header */}
+     <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Icon name="chevron-left" size={30} color="#FDAD00" />
+          <Icon name="chevron-left" size={35} color="#FDAD00" />
         </TouchableOpacity>
-
-        <View style={styles.headerContent}>
-          <Image source={require('../assets/BuyNaBay.png')} style={styles.headerLogo} resizeMode="contain" />
-          <Text style={styles.headerTitle}>BuyNaBay</Text>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
+          <Text style={styles.logoText}>BuyNaBay</Text>
         </View>
       </View>
 
@@ -183,16 +182,13 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
-  // General container styles
-  container: { 
-    flex: 1, 
-    padding: 20, 
-    backgroundColor: '#1b1b41', 
+  container: {
+    flex: 1,
+    backgroundColor: '#1b1b41',
+    paddingBottom: 20,
     paddingHorizontal: 20,
   },
-
-  // Header styles
-  header: { 
+  header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -200,28 +196,31 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     margin: 20,
   },
-  backButton: { 
-    marginRight: 10 
+  backArrow: {
+    alignSelf: 'flex-start',
   },
-  headerContent: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'flex-end', 
-    flex: 1 
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  headerLogo: { 
-    width: 40, 
-    height: 40 
+  logo: {
+    width: 30,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 10,
   },
-  headerTitle: { 
-    fontSize: 20, 
-    fontWeight: 'bold', 
-    color: '#FFF', 
-    marginLeft: 10 
+  logoText: {
+    fontSize: 22,
+    color: '#FFF',
+    fontFamily: 'Poppins_700Bold',
   },
-
-  // Title and subtitle styles
-  title: { 
+  Content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+  },
+  title: {
     fontSize: 45,
     fontWeight: 900,
     color: '#FFF',
@@ -229,17 +228,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins',
     marginBottom: 10,
   },
-  subtitle: { 
-    fontSize: 14, 
-    color: '#B0B0B0', 
-    textAlign: 'center', 
-    marginBottom: 30 
-  },
-  Content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 15,
+  subtitle: {
+    fontSize: 14,
+    color: '#B0B0B0',
+    textAlign: 'center',
+    marginBottom: 30,
+    fontFamily: 'Poppins',
   },
   // Input styles
   inputContainer: { 

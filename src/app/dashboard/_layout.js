@@ -18,76 +18,71 @@ export default function DrawerLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer drawerContent={(props) => (
-        <View style={{ flex: 1 }}>
-          <DrawerContentScrollView
-            {...props}
-            scrollEnabled={true}
-            contentContainerStyle={{ paddingTop: top }}
-          >
+      <Drawer
+        drawerContent={(props) => (
+          <View style={{ flex: 1 }}>
+            <DrawerContentScrollView
+              {...props}
+              scrollEnabled={true}
+              contentContainerStyle={{ paddingTop: top }}
+            >
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 50 + top,
+                  paddingBottom: 20
+                }}
+              >
+                {/* New BuyNaBay Logo */}
+                <View style={styles.avatarContainer}>
+                  <Image source={require('../../assets/OfficialBuyNaBay.png')} style={styles.avatar} />
+                </View>
+              </View>
+              <DrawerItemList {...props} />
+              {/* Profile Drawer Item */}
+
+              <DrawerItem
+                label="Logout"
+                icon={() => (
+                  <Icon name='sign-out' color='#1B1B41' size={25} /> // Inlined icon size and color for logout
+                )}
+                labelStyle={{ fontSize: 18 }} // Inlined font size for label
+                onPress={handleLogout}
+              />
+            </DrawerContentScrollView>
             <View
               style={{
-                justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 50 + top,
-                paddingBottom: 20
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingBottom: 20 + bottom
               }}
             >
-              {/* New BuyNaBay Logo */}
-              <View style={styles.avatarContainer}>
-                <Image source={require('../../assets/BuyNaBay.png')} style={styles.avatar} />
-              </View>
-            </View>
-            <DrawerItemList {...props} />
-            {/* Profile Drawer Item */}
-            <DrawerItem
-              label="Profile"
-              icon={() => (
-                <Icon name='user' color='#FF6F00' size={25} /> // Adjusted icon color for "BuyNaBay" theme
-              )}
-              labelStyle={{ fontSize: 18 }} // Inlined font size for label
-              onPress={() => router.push('/profile')} // Navigate to Profile page
-            />
-            <DrawerItem
-              label="Logout"
-              icon={() => (
-                <Icon name='sign-out' color='#FF6F00' size={25} /> // Inlined icon size and color for logout
-              )}
-              labelStyle={{ fontSize: 18 }} // Inlined font size for label
-              onPress={handleLogout}
-            />
-          </DrawerContentScrollView>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingBottom: 20 + bottom
-            }}
-          >
-            <Text style={styles.footerText}>
-              © {year} BuyNaBay. All rights reserved.
-            </Text>
-          </View> 
-        </View>
-      )}>
+              <Text style={styles.footerText}>
+                © {year} BuyNaBay. All rights reserved.
+              </Text>
+            </View> 
+          </View>
+        )}
+      >
         <Drawer.Screen
           name="(tabs)" // This is the name of the page and must match the URL from the root
           options={{
             drawerLabel: 'Home',
-            title: 'BuyNaBay',
             drawerIcon: () => (
-              <Icon name='home' size={25} color='#FF6F00' /> // Adjusted icon color for "BuyNaBay" theme
+              <Icon name='home' size={25} color='#FDAD00' /> // Adjusted icon color for "BuyNaBay" theme
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
+            headerShown: false, // Remove the header
           }}
         />
         <Drawer.Screen
           name="settings" // This is the name of the page and must match the URL from the root
           options={{
             drawerLabel: 'Settings',
-            title: 'Settings',
+            headerShown: false, // Remove the header
             drawerIcon: () => (
-              <Icon name='cogs' size={25} color='#FF6F00' /> // Adjusted icon color for Settings
+              <Icon name='cogs' size={25} color='#FDAD00' /> // Adjusted icon color for Settings
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
           }}
@@ -97,9 +92,9 @@ export default function DrawerLayout() {
           name="profile" // The profile page should match the URL in the root
           options={{
             drawerLabel: 'Profile',
-            title: 'Profile',
+            headerShown: false, // Remove the header
             drawerIcon: () => (
-              <Icon name='user' size={25} color='#FF6F00' /> // Adjusted icon color for Profile
+              <Icon name='user' size={25} color='#FDAD00' /> // Adjusted icon color for Profile
             ),
             drawerLabelStyle: { fontSize: 18 }, // Inlined font size for label
           }}
@@ -118,7 +113,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FF6F00', // BuyNaBay theme color
+    backgroundColor: '#1B1B41', // BuyNaBay theme color
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -132,7 +127,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', // Ensure logo is properly resized
   },
   footerText: {
-    color: '#FF6F00', // Adjusted footer text color for BuyNaBay theme
+    color: '#1B1B41', // Adjusted footer text color for BuyNaBay theme
     fontSize: 14,
     fontWeight: '300',
   },

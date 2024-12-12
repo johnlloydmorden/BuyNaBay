@@ -181,20 +181,90 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#1b1b41' },
-  header: { flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
-  backButton: { marginRight: 10 },
-  headerContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', flex: 1 },
-  headerLogo: { width: 40, height: 40 },
-  headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#FFF', marginLeft: 10 },
-  title: { fontSize: 32, fontWeight: 'bold', color: '#FFF', textAlign: 'center', marginBottom: 10 },
-  subtitle: { fontSize: 14, color: '#B0B0B0', textAlign: 'center', marginBottom: 30 },
-  inputContainer: { width: '100%', marginBottom: 15 },
-  input: { backgroundColor: '#1b1b41', color: '#FFF' },
-  signUpButton: { width: '100%', paddingVertical: 12, backgroundColor: '#FDAD00', borderRadius: 25, marginTop: 20 },
-  signInContainer: { marginTop: 15, alignItems: 'center' },
-  signInText: { color: '#FFF', fontSize: 14 },
-  signInLink: { fontWeight: 'bold', color: '#FDAD00' },
+  // General container styles
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: '#1b1b41', 
+    paddingHorizontal: 20,
+  },
+
+  // Header styles
+  header: { 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 20,
+    margin: 20,
+  },
+  backButton: { 
+    marginRight: 10 
+  },
+  headerContent: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'flex-end', 
+    flex: 1 
+  },
+  headerLogo: { 
+    width: 40, 
+    height: 40 
+  },
+  headerTitle: { 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    color: '#FFF', 
+    marginLeft: 10 
+  },
+
+  // Title and subtitle styles
+  title: { 
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    color: '#FFF', 
+    textAlign: 'center', 
+    marginBottom: 10 
+  },
+  subtitle: { 
+    fontSize: 14, 
+    color: '#B0B0B0', 
+    textAlign: 'center', 
+    marginBottom: 30 
+  },
+
+  // Input styles
+  inputContainer: { 
+    width: '100%', 
+    marginBottom: 15 
+  },
+  input: { 
+    backgroundColor: '#1b1b41', 
+    color: '#FFF' 
+  },
+
+  // Button styles
+  signUpButton: { 
+    width: '100%', 
+    paddingVertical: 12, 
+    backgroundColor: '#FDAD00', 
+    borderRadius: 25, 
+    marginTop: 20 
+  },
+
+  // Sign-in styles
+  signInContainer: { 
+    marginTop: 15, 
+    alignItems: 'center' 
+  },
+  signInText: { 
+    color: '#FFF', 
+    fontSize: 14 
+  },
+  signInLink: { 
+    fontWeight: 'bold', 
+    color: '#FDAD00' 
+  },
 });
 
 export default Register;

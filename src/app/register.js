@@ -108,6 +108,7 @@ const Register = () => {
         </View>
       </View>
 
+      <View style={styles.Content}>
       <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.subtitle}>Create an account to get started</Text>
 
@@ -176,6 +177,7 @@ const Register = () => {
           </Text>
         </Text>
       </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -232,7 +234,12 @@ const styles = StyleSheet.create({
     textAlign: 'center', 
     marginBottom: 30 
   },
-
+  Content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 15,
+  },
   // Input styles
   inputContainer: { 
     width: '100%', 

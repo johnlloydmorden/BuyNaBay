@@ -96,6 +96,23 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+
+     {/* Header */}
+     <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <Icon name="chevron-left" size={35} color="#FDAD00" />
+        </TouchableOpacity>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/BuyNaBay.png')} style={styles.logo} />
+          <Text style={styles.logoText}>BuyNaBay</Text>
+        </View>
+      </View>
+
+      <View style={styles.Content}>
+
+      {/* Header */}
+      <View style={styles.header}>
+
      {/* Header */}
      <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
@@ -120,6 +137,7 @@ const Register = () => {
           placeholder="Enter Email"
           placeholderTextColor="#FFF"
           value={email}
+          textColor='#FFF'
           onChangeText={setEmail}
           theme={{ colors: { placeholder: '#FFF', primary: '#FDAD00' } }}
         />
@@ -133,6 +151,7 @@ const Register = () => {
           placeholder="Enter Password"
           placeholderTextColor="#FFF"
           value={password}
+          textColor='#FFF'
           onChangeText={setPassword}
           theme={{ colors: { placeholder: '#FFF', primary: '#FDAD00' } }}
         />
@@ -146,6 +165,7 @@ const Register = () => {
           placeholderTextColor="#FFF"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
+          textColor='#FFF'
           theme={{ colors: { placeholder: '#FFF', primary: '#FDAD00' } }}
         />
       </View>
@@ -158,6 +178,7 @@ const Register = () => {
           placeholderTextColor="#FFF"
           value={schoolId}
           onChangeText={setSchoolId}
+          textColor='#FFF'
           theme={{ colors: { placeholder: '#FFF', primary: '#FDAD00' } }}
         />
       </View>
@@ -182,10 +203,20 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: '#1b1b41',
     paddingBottom: 20,
+
+    paddingHorizontal: 20,
+  },
+  header: {
+  // General container styles
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: '#1b1b41', 
     paddingHorizontal: 20,
   },
   header: {
@@ -198,6 +229,45 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     alignSelf: 'flex-start',
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 30,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 10,
+  },
+  logoText: {
+    fontSize: 22,
+    color: '#FFF',
+    fontFamily: 'Poppins_700Bold',
+  },
+  Content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+  },
+  title: {
+    fontSize: 45,
+    fontWeight: 900,
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Poppins',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#B0B0B0',
+    textAlign: 'center',
+    marginBottom: 30,
+    fontFamily: 'Poppins',
+  },
+  backButton: { 
+    marginRight: 10 
   },
   logoContainer: {
     flexDirection: 'row',
@@ -270,3 +340,4 @@ const styles = StyleSheet.create({
 });
 
 export default Register;
+

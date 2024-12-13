@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, ScrollView, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button, ScrollView, Image, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { createClient } from '@supabase/supabase-js';
 
@@ -32,13 +32,13 @@ export default function Add() {
         setImage(result.assets[0].uri); // Set the image URI to state
       }
     } else {
-      alert('Permission to access the media library is required!');
+      Alert.alert('Permission to access the media library is required!');
     }
   };
 
   const handleAddItem = async () => {
     if (!itemName || !description || !price || !category || !address) {
-      alert('Please fill out all fields.');
+      Alert.alert('Please fill out all fields.');
       return;
     }
 
@@ -55,9 +55,9 @@ export default function Add() {
     ]);
 
     if (error) {
-      alert('Error adding item: ' + error.message);
+      Alert.alert('Error adding item: ' + error.message);
     } else {
-      alert('Item added successfully!');
+      Alert.alert('Item added successfully!');
       // Reset the form fields
       setItemName('');
       setDescription('');

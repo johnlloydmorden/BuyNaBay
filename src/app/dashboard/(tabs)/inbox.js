@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   profileInfo: { marginLeft: 10 },
   expandedName: { fontSize: 18, fontWeight: 'bold' },
   expandedUsername: { fontSize: 16, color: '#888' },
-  messageArea: { marginTop: 60, flex: 1, justifyContent: 'flex-start' },
+  messageArea: { marginTop: 70, flex: 1, justifyContent: 'flex-start' },
   bubbleContainer: { flexDirection: 'row', marginBottom: 20, alignItems: 'center' },
   bubbleProfileImage: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
   bubble: { backgroundColor: '#E0E0E0', padding: 15, borderRadius: 15, maxWidth: '70%', alignSelf: 'flex-start' },
